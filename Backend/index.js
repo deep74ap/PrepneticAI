@@ -25,6 +25,16 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 
 
+app.post('/upload-photo', uploadPhoto.single('photo'), (req, res) => {
+  res.status(200).json({ message: 'Photo uploaded successfully', data: req.file });
+  console.log("backend "+ JSON.stringify(req.file))
+});
+
+app.post('/upload-resume', uploadResume.single('resume'), (req, res) => {
+  res.status(200).json({ message: 'Resume uploaded successfully', data: req.file });
+});
+
+
 app.get("/",(req,res) =>{
     console.log("Response sent");
     res.send("Hii")
